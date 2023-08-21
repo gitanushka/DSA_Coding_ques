@@ -1,0 +1,15 @@
+//Iterative
+void reverse(node* &head){
+    node* prevptr = NULL;
+    node* current = head;
+    node* nextptr=NULL;
+    
+    while(current!=NULL){
+        nextptr = current->next;
+        current->next = prevptr;
+        prevptr = current;
+        current = nextptr;
+    }
+    head = prevptr;
+}
+
