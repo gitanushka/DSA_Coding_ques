@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+int firstMissing(int arr[], int n)
+{
+    // Write your code here.
+    
+    for(int i=0;i<n;i++){
+        //array me jo element hai usko liya
+        int element = arr[i];
+        //vo element ka ek minus uski respective chair hogi 0 index ke basis pe
+        int chair = element-1;
+        //ham negative no. or n se bade no. ko ignore krenge and duplicate value na ho 
+        if(element>=1 && element<=n && arr[chair]!=element)
+       {
+         //agr hamara element uski chAir pe nhi betha h to swap krdo jo betha usse  
+        if (element != chair) {
+          swap(arr[chair], arr[i]);
+          //i-- taaki jb swap or agr uske bhi pehla wala element ki position glt ho jaaye to use bhi shi krde
+          i--;
+        }
+       }
+    }
+    //jb sb respective chair pe beth jaaye tb check re ki kon nhi betha h vhi missing element hoga mtlb ki
+    // index+1 ki value hi vo element hona chahiye nhi h to vo index+1 hi return krdo vhi lowest positive missing h
+    for(int i=0;i<n;i++){
+        if(i+1!=arr[i]) return i+1;
+    }
+    //in case agr sb shi place pe bethe h 1 2 3 4 5 to n+1 return krdo kyunki vhi agla positive hoga
+    return n+1;
+
+}
