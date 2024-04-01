@@ -1,0 +1,60 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+void display(int arr[], int n){
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
+void selection(int arr[], int n){
+    //select minimum and swap
+    for(int i=0;i<=n-2;i++){
+        int min = i;
+        for(int j=i+1; j<n-1;j++){
+            if(arr[j]<arr[min]) min = j;
+        }
+        swap(arr[i],arr[min]);
+    }
+}
+
+void bubble(int arr[], int n){
+    //pushed max element to right by alternate swaps
+    bool swapped;
+    for(int i=0;i<n-1;i++){
+        swapped = false;
+        for(int j=0;j<n-i-1;j++){
+            if(arr[j]>arr[j+1]){
+                swap(arr[j],arr[j+1]);
+                swapped = true;
+            }
+        }
+        if(swapped == false) break;
+    }
+}
+
+void insertion(int arr[], int n){
+    //pick an element and place it in the correct order
+     for(int i=0;i < n-1; i++){
+         int j = i;
+         while(j>0 && arr[j-1]>arr[j]){
+             swap(arr[j-1],arr[j]);
+             j--;
+         }
+     }
+}
+
+int main() {
+    int arr[]={10, 58, 32, 12, 4, 22, 76, 98};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    display(arr,n);
+    // selection(arr,n);
+    // bubble(arr,n);
+    insertion(arr, n);
+    display(arr,n);
+    // merge(arr, n);
+    // quick(arr, n);
+    return 0;
+}
